@@ -6,7 +6,7 @@ export class CreateSubjectInput {
   name: string;
 
   @Field()
-  desciption: string;
+  description: string;
 
   @Field(() => [String], { nullable: 'itemsAndList' })
   classes?: string[];

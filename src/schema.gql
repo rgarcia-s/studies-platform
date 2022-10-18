@@ -2,59 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type User {
-  id: String!
-  name: String!
-  lastName: String
-  email: String!
-}
-
 type Subject {
   id: String!
   name: String!
-  desciption: String!
-  classes: [String!]!
+  description: String!
+  classes: [String]
 }
 
 type Query {
-  users: [User]
-  user(id: Int!): User!
   subjects: [Subject!]!
-  subject(id: Int!): Subject!
+  subject(id: String!): Subject!
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
   createSubject(createSubjectInput: CreateSubjectInput!): Subject!
   updateSubject(updateSubjectInput: UpdateSubjectInput!): Subject!
-  removeSubject(id: Int!): Subject!
-}
-
-input CreateUserInput {
-  id: String!
-  name: String!
-  lastName: String
-  email: String!
-}
-
-input UpdateUserInput {
-  id: String!
-  name: String!
-  lastName: String
-  email: String!
+  removeSubject(id: String!): Subject!
 }
 
 input CreateSubjectInput {
   name: String!
-  desciption: String!
+  description: String!
   classes: [String]
 }
 
 input UpdateSubjectInput {
   name: String
-  desciption: String
+  description: String
   classes: [String]
   id: String!
 }

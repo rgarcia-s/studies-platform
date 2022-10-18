@@ -12,23 +12,39 @@ export class SubjectsService {
     private subjectsRepository: Repository<Subject>,
   ) {}
 
-  create(createSubjectInput: CreateSubjectInput) {
-    return 'This action adds a new subject';
+  async create(createSubjectInput: CreateSubjectInput) {
+    const subject = this.subjectsRepository.create({
+      name: createSubjectInput.name,
+      description: createSubjectInput.description,
+      classes: createSubjectInput.classes,
+    });
+
+    await this.subjectsRepository.insert(subject);
+
+    return subject;
   }
 
-  findAll() {
-    return `This action returns all subjects`;
+  async findAll() {
+    return this.subjectsRepository.find();
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} subject`;
+    return this.subjectsRepository.findOneBy({ id: id });
   }
 
-  update(id: string, updateSubjectInput: UpdateSubjectInput) {
-    return `This action updates a #${id} subject`;
+  async update(id: string, updateSubjectInput: UpdateSubjectInput) {
+    await this.subjectsRepository.save(updateSubjectInput);
+
+    return this.subjectsRepository.findOneBy({ id: id });
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} subject`;
+  async remove(id: string) {
+    const subject = await this.subjectsRepository.findOneBy({ id: id });
+
+    await this.subjectsRepository.remove(subject);
+
+    subject.id = id;
+
+    return subject;
   }
 }

@@ -10,7 +10,7 @@ export class UpdateSubjectInput extends PartialType(CreateSubjectInput) {
   name: string;
 
   @Field({ nullable: true })
-  desciption: string;
+  description: string;
 
   @Field(() => [String], { nullable: 'itemsAndList' })
   classes: string[];

@@ -14,9 +14,9 @@ export class Subject {
 
   @Column()
   @Field()
-  desciption: string;
+  description: string;
 
-  @Column('varchar', { array: true })
-  @Field(() => [String])
+  @Column('varchar', { array: true, nullable: true })
+  @Field(() => [String], { nullable: 'itemsAndList' })
   classes: string[];
 }
